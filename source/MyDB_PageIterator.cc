@@ -26,10 +26,6 @@ void MyDB_PageIterator :: getNext (){
 }
 
 bool MyDB_PageIterator :: hasNext (){
-
-    //cout <<" [MyDB_PageIterator :: hasNext ()] "<< endl;
-    //current offset is" << _current_offset << endl;
-    //cout <<" [MyDB_PageIterator :: hasNext ()] the end of offset is" << GET_OFFSET_UNTIL_END(_pageHandle -> getBytes()) << endl;
     return _current_offset < GET_OFFSET_UNTIL_END(_pageHandle -> getBytes());
 }
 
