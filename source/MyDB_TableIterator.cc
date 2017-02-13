@@ -7,12 +7,18 @@
 void MyDB_TableIterator :: getNext() {
     if (_currentPageIterator->hasNext()) {
         _currentPageIterator->getNext();
+        return;
     } else {
         while (_current_page < _tableReaderWriter -> getLastPage()) {
             _currentPageIterator = (*_tableReaderWriter)[++_current_page].getIterator(_record);
-            _currentPageIterator->getNext();
+            if (_currentPageIterator -> hasNext()) {
+                _currentPageIterator -> getNext();
+                return;
+            } else {
+                continue;
+            }
         }
-        cout << "Error: reach the end of the table." << endl;
+    cout << "Error: reach the end of the table." << endl;
     }
 }
 

@@ -11,6 +11,7 @@ class MyDB_PageIterator;
 
 void MyDB_PageReaderWriter :: clear () {
     GET_OFFSET_UNTIL_END(_pageHandle -> getBytes()) = HEADER_SIZE;
+    _pageHandle->wroteBytes();
 }
 
 MyDB_PageType MyDB_PageReaderWriter :: getType () {
@@ -24,6 +25,7 @@ MyDB_RecordIteratorPtr MyDB_PageReaderWriter :: getIterator (MyDB_RecordPtr reco
 
 void MyDB_PageReaderWriter :: setType (MyDB_PageType pageType) {
     GET_TYPE(_pageHandle -> getBytes()) = pageType;
+    _pageHandle->wroteBytes();
 }
 
 bool MyDB_PageReaderWriter :: append (MyDB_RecordPtr record) {

@@ -13,17 +13,23 @@
 
 
 void MyDB_PageIterator :: getNext (){
+    cout <<" [MyDB_PageIterator :: getNext ()] " << endl;
     if (hasNext()) {
         char *head = (char*)_pageHandle -> getBytes();
         char *readFrom = head + _current_offset;
         char *next = (char*)_record -> fromBinary(readFrom);
         _current_offset = next - head;
+        cout << " [MyDB_PageIterator :: getNext ()] " << endl;
     } else {
         cout<< "Reach the end of the page." << endl;
     }
 }
 
 bool MyDB_PageIterator :: hasNext (){
+    
+    cout <<" [MyDB_PageIterator :: hasNext ()] "<< endl;
+    //current offset is" << _current_offset << endl;
+    //cout <<" [MyDB_PageIterator :: hasNext ()] the end of offset is" << GET_OFFSET_UNTIL_END(_pageHandle -> getBytes()) << endl;
     return _current_offset < GET_OFFSET_UNTIL_END(_pageHandle -> getBytes());
 }
 

@@ -52,7 +52,8 @@ public:
     MyDB_PageReaderWriter &last ();
 
     int getLastPage();
-
+    
+    ~MyDB_TableReaderWriter();
 private:
 
     MyDB_RecordPtr _emptyRecord;
