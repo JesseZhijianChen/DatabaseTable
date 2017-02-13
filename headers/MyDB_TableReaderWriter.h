@@ -8,6 +8,7 @@
 #include "MyDB_Record.h"
 #include "MyDB_RecordIterator.h"
 #include "MyDB_Table.h"
+#include "unordered_map"
 
 // create a smart pointer for the catalog
 using namespace std;

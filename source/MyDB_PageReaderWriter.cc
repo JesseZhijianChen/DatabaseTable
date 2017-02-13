@@ -27,14 +27,15 @@ void MyDB_PageReaderWriter :: setType (MyDB_PageType pageType) {
 }
 
 bool MyDB_PageReaderWriter :: append (MyDB_RecordPtr record) {
+    cout<< "[MyDB_PageReaderWriter :: append] -------------------------------------" << endl;
     char *head = (char*)_pageHandle -> getBytes();
     size_t recordSize = record -> getBinarySize();
-    size_t offset = GET_OFFSET_UNTIL_END(head);
-    //if (myid < 8) {
-      //cout << "[" << myid << "]: " << offset << " :: " << _pageSize << endl;
-    //}
-    if (recordSize + offset <= _pageSize) {
 
+    cout<< "[MyDB_PageReaderWriter :: append] " << "recordSize is " << recordSize << endl;
+    size_t offset = GET_OFFSET_UNTIL_END(head);
+    cout<< "[MyDB_PageReaderWriter :: append] " << "offset is " << offset << endl;
+    if (recordSize + offset <= _pageSize) {
+        cout<< "[MyDB_PageReaderWriter :: append] " << "can append. " << offset << endl;
         char *writeTo = offset + head;
         char *end = (char*)record -> toBinary(writeTo);
         GET_OFFSET_UNTIL_END(head) = end - head;
