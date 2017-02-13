@@ -18,10 +18,10 @@ class MyDB_TableIterator : public MyDB_RecordIterator {
 public:
     // put the contents of the next record in the file/page into the iterator record
     // this should be called BEFORE the iterator record is first examined
-    void getNext () = 0;
+    void getNext ();
 
     // return true iff there is another record in the file/page
-    bool hasNext () = 0;
+    bool hasNext ();
 
     ~MyDB_TableIterator();
 

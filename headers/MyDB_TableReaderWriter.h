@@ -3,6 +3,7 @@
 #define TABLE_RW_H
 
 #include <memory>
+#include <unordered_map>
 #include "MyDB_BufferManager.h"
 #include "MyDB_Record.h"
 #include "MyDB_RecordIterator.h"
@@ -48,7 +49,7 @@ public:
 
         // access the last page in the file
     MyDB_PageReaderWriter &last ();
-    
+
     int getLastPage();
 
 private:
