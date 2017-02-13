@@ -17,7 +17,7 @@ MyDB_PageType MyDB_PageReaderWriter :: getType () {
 }
 
 MyDB_RecordIteratorPtr MyDB_PageReaderWriter :: getIterator (MyDB_RecordPtr record) {
-    shared_ptr<MyDB_RecordIterator> ret = make_shared<MyDB_PageIterator>(_pageHandle, record);
+    MyDB_RecordIteratorPtr ret = make_shared<MyDB_PageIterator>(_pageHandle, record);
     return ret;
 }
 
