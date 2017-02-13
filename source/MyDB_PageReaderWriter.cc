@@ -29,23 +29,21 @@ void MyDB_PageReaderWriter :: setType (MyDB_PageType pageType) {
 }
 
 bool MyDB_PageReaderWriter :: append (MyDB_RecordPtr record) {
-    cout<< "[MyDB_PageReaderWriter :: append] -------------------------------------" << endl;
+    //cout<< "[MyDB_PageReaderWriter :: append] -------------------------------------" << endl;
     char *head = (char*)_pageHandle -> getBytes();
     size_t recordSize = record -> getBinarySize();
 
-    cout<< "[MyDB_PageReaderWriter :: append] " << "recordSize is " << recordSize << endl;
+    //cout<< "[MyDB_PageReaderWriter :: append] " << "recordSize is " << recordSize << endl;
     size_t offset = GET_OFFSET_UNTIL_END(head);
-    cout<< "[MyDB_PageReaderWriter :: append] " << "offset is " << offset << endl;
+    //cout<< "[MyDB_PageReaderWriter :: append] " << "offset is " << offset << endl;
     if (recordSize + offset <= _pageSize) {
-        cout<< "[MyDB_PageReaderWriter :: append] " << "can append. " << offset << endl;
+        //cout<< "[MyDB_PageReaderWriter :: append] " << "can append. " << offset << endl;
         char *writeTo = offset + head;
         char *end = (char*)record -> toBinary(writeTo);
         GET_OFFSET_UNTIL_END(head) = end - head;
-<<<<<<< HEAD
         _pageHandle->wroteBytes();
-=======
-        cout << "Append Succeed!!!" << endl;
->>>>>>> origin/master
+        //cout << "Append Succeed!!!" << endl;
+
         return true;
     } else {
         //cout << "Fail to append record: pageSize exceeds." << endl;

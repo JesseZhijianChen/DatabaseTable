@@ -26,12 +26,10 @@ MyDB_TableReaderWriter :: ~MyDB_TableReaderWriter() {
 }
 
 MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
-<<<<<<< HEAD
+
     cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "get page " << id << endl;
 	PageMap :: iterator it = _pageMap.find(id);
-=======
-  PageMap :: iterator it = _pageMap.find(id);
->>>>>>> origin/master
+
 	//pagePtr exist
 	if (it != _pageMap.end()) {
         cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "pageReaderWriter exists." <<endl;
