@@ -9,13 +9,16 @@
 
 
 using namespace std;
-//class MyDB_RecordIterator;
-//class MyDB_TableIterator;
+
 
 MyDB_TableReaderWriter :: MyDB_TableReaderWriter (MyDB_TablePtr table, MyDB_BufferManagerPtr bufferMgr) {
+    cout<< "[MyDB_TableReaderWriter :: MyDB_TableReaderWriter] "<< "Constructor" << endl;
 	_table = table;
 	_bufferMgr = bufferMgr;
-  _emptyRecord = make_shared <MyDB_Record> (table->getSchema());
+    _emptyRecord = make_shared <MyDB_Record> (table->getSchema());
+    if (_table -> lastPage() == -1) {
+        _table -> setLastPage(0);
+    }
 }
 
 MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
