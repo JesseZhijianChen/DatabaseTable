@@ -38,9 +38,9 @@ public:
 	void setType (MyDB_PageType toMe);
 
 
-    MyDB_PageReaderWriter(MyDB_PageHandle, size_t);
+  MyDB_PageReaderWriter(MyDB_PageHandle, size_t);
 
-    ~MyDB_PageReaderWriter();
+  ~MyDB_PageReaderWriter();
 
 
 

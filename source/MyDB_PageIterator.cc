@@ -13,13 +13,12 @@
 
 
 void MyDB_PageIterator :: getNext (){
-    //cout <<" [MyDB_PageIterator :: getNext ()] " << endl;
+
     if (hasNext()) {
         char *head = (char*)_pageHandle -> getBytes();
         char *readFrom = head + _current_offset;
         char *next = (char*)_record -> fromBinary(readFrom);
         _current_offset = next - head;
-        //cout << " [MyDB_PageIterator :: getNext ()] " << endl;
     } else {
         cout<< "Reach the end of the page." << endl;
     }

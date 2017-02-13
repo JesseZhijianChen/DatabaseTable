@@ -48,12 +48,13 @@ public:
 	// access the i^th page in this file
 	MyDB_PageReaderWriter &operator [] (size_t i);
 
-        // access the last page in the file
-    MyDB_PageReaderWriter &last ();
+  // access the last page in the file
+  MyDB_PageReaderWriter &last ();
 
-    int getLastPage();
-    
-    ~MyDB_TableReaderWriter();
+  int getLastPage();
+
+  ~MyDB_TableReaderWriter();
+
 private:
 
     MyDB_RecordPtr _emptyRecord;
