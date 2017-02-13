@@ -34,14 +34,14 @@ bool MyDB_PageIterator :: hasNext (){
 }
 
 MyDB_PageIterator :: MyDB_PageIterator(MyDB_PageHandle pageHandle, MyDB_RecordPtr record) {
-    
+
     _current_offset = HEADER_SIZE;
     _pageHandle = pageHandle;
     _record = record;
 }
 
 MyDB_PageIterator :: ~MyDB_PageIterator() {
-    
+
 }
 
 

@@ -41,9 +41,13 @@ bool MyDB_PageReaderWriter :: append (MyDB_RecordPtr record) {
         char *writeTo = offset + head;
         char *end = (char*)record -> toBinary(writeTo);
         GET_OFFSET_UNTIL_END(head) = end - head;
+<<<<<<< HEAD
         _pageHandle->wroteBytes();
         //cout << "Append Succeed!!!" << endl;
 
+=======
+        _pageHandle -> wroteBytes();
+>>>>>>> origin/master
         return true;
     } else {
         //cout << "Fail to append record: pageSize exceeds." << endl;

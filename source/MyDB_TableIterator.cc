@@ -17,13 +17,18 @@ void MyDB_TableIterator :: getNext() {
             } else {
                 continue;
             }
-    }
+        }
     cout << "Error: reach the end of the table." << endl;
     }
 }
 
 bool MyDB_TableIterator :: hasNext() {
+<<<<<<< HEAD
     if (_currentPageIterator -> hasNext()) {
+=======
+
+    if (_current_page < _tableReaderWriter ->getLastPage() ) {
+>>>>>>> origin/master
         return true;
     }
     while (_current_page < _tableReaderWriter -> getLastPage()) {
