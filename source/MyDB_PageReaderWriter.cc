@@ -15,7 +15,7 @@ MyDB_PageType MyDB_PageReaderWriter :: getType () {
 }
 
 MyDB_RecordIteratorPtr MyDB_PageReaderWriter :: getIterator (MyDB_RecordPtr record) {
-    shared_ptr<MyDB_RecordIterator> ret = make_shared<MyDB_RecordIterator>(_pageHandle, record);
+    shared_ptr<MyDB_RecordIterator> ret = make_shared<MyDB_PageIterator>(_pageHandle, record);
     return ret;
 }
 
@@ -44,7 +44,7 @@ MyDB_PageReaderWriter :: MyDB_PageReaderWriter (MyDB_PageHandle pageHandle, size
 }
 
 MyDB_PageReaderWriter :: ~MyDB_PageReaderWriter() {
-    
+
 }
 
 #endif

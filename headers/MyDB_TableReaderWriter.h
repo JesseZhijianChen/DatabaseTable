@@ -14,7 +14,7 @@ class MyDB_PageReaderWriter;
 class MyDB_TableReaderWriter;
 typedef shared_ptr<MyDB_PageReaderWriter> MyDB_PageReaderWriterPtr;
 typedef shared_ptr <MyDB_TableReaderWriter> MyDB_TableReaderWriterPtr;
-typedef unordered_map<int, MyDB_PageReaderWriterPtr> PageMap;
+typedef unordered_map<size_t, MyDB_PageReaderWriterPtr> PageMap;
 
 class MyDB_TableReaderWriter {
 
@@ -52,13 +52,13 @@ public:
 private:
 
     MyDB_RecordPtr _emptyRecord;
-    
+
     MyDB_TablePtr _table;
-    
+
     MyDB_BufferManagerPtr _bufferManager;
-    
+
     PageMap _pageMap;
-    
+
 };
 
 #endif
