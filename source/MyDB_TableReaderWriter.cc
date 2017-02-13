@@ -28,12 +28,6 @@ MyDB_TableReaderWriter :: MyDB_TableReaderWriter (MyDB_TablePtr table, MyDB_Buff
 
 MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
 
-<<<<<<< HEAD
-  //cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "get page " << id << endl;
-=======
-
-    cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "get page " << id << endl;
->>>>>>> 30e45cd520e43cbffbc71f6f9b1d3dfc22a2e62e
 	PageMap :: iterator it = _pageMap.find(id);
 
 	//pagePtr exist

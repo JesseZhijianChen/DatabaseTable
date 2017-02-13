@@ -23,16 +23,16 @@ void MyDB_TableIterator :: getNext() {
 }
 
 bool MyDB_TableIterator :: hasNext() {
+
     if (_currentPageIterator -> hasNext()) {
-        if (_current_page < _tableReaderWriter ->getLastPage() ) {
+        return true;
+    }
+    while (_current_page < _tableReaderWriter -> getLastPage()) {
+        _currentPageIterator = (*_tableReaderWriter)[++_current_page].getIterator(_record);
+        if (_currentPageIterator -> hasNext()) {
             return true;
         }
-        while (_current_page < _tableReaderWriter -> getLastPage()) {
-            _currentPageIterator = (*_tableReaderWriter)[++_current_page].getIterator(_record);
-            if (_currentPageIterator -> hasNext()) {
-                return true;
-            }
-        }
+    }
     return false;
 }
 
