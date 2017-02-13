@@ -22,16 +22,24 @@ MyDB_TableReaderWriter :: MyDB_TableReaderWriter (MyDB_TablePtr table, MyDB_Buff
     }
 }
 
+MyDB_TableReaderWriter :: ~MyDB_TableReaderWriter() {
+}
+
 MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
+    cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "get page " << id << endl;
 	PageMap :: iterator it = _pageMap.find(id);
 	//pagePtr exist
 	if (it != _pageMap.end()) {
+        cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "pageReaderWriter exists." <<endl;
 		MyDB_PageReaderWriterPtr ptr = it->second;
 		return *ptr;
 	}
 	//pagePtr doesn't exist
 	else {
+        cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "pageReaderWriter does not exist." <<endl;
+        
     MyDB_PageHandle pageHandle = _bufferMgr->getPage(_table, (long) id);
+        cout << "[ MyDB_TableReaderWriter :: operator [] ] " << "page offset is " <<GET_OFFSET_UNTIL_END(pageHandle -> getBytes())<<endl;
     size_t pageSize = _bufferMgr->getPageSize();
 		MyDB_PageReaderWriterPtr ptr = make_shared<MyDB_PageReaderWriter>(pageHandle, pageSize);
 		_pageMap[id] = ptr;
@@ -77,10 +85,6 @@ void MyDB_TableReaderWriter :: loadFromTextFile (string fNameIn) {
         cout << "Error: file " << fNameIn << " doesn't exist." << endl;
     }
     myFile.close();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 }
 
 MyDB_RecordIteratorPtr MyDB_TableReaderWriter :: getIterator (MyDB_RecordPtr record) {
