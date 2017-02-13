@@ -22,14 +22,16 @@ public:
     // return true iff there is another record in the file/page
     bool hasNext () = 0;
 
-    MyDB_TableIterator();
+    ~MyDB_TableIterator();
 
-    ~MyDB_TableIterator(MyDB_TablePtr table, MyDB_RecordPtr record);
+    MyDB_TableIterator(MyDB_TableReaderWriter* tableReaderWriter, MyDB_RecordPtr record);
 
 private:
 
-    MyDB_TablePtr _table;
+    MyDB_TableReaderWriter* _tableReaderWriter;
     MyDB_RecordPtr _record;
+    MyDB_RecordIteratorPtr _currentPageIterator;
+    int _current_page;
 };
 
 

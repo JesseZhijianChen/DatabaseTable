@@ -3,8 +3,10 @@
 #define PAGE_RW_C
 
 #include "MyDB_PageReaderWriter.h"
+#include "MyDB_PageIterator.h"
 
 class MyDB_RecordIterator;
+class MyDB_PageIterator;
 
 void MyDB_PageReaderWriter :: clear () {
     GET_OFFSET_UNTIL_END(_pageHandle -> getBytes()) = HEADER_SIZE;

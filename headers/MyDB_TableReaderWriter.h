@@ -47,7 +47,9 @@ public:
 	MyDB_PageReaderWriter &operator [] (size_t i);
 
         // access the last page in the file
-        MyDB_PageReaderWriter &last ();
+    MyDB_PageReaderWriter &last ();
+    
+    int getLastPage();
 
 private:
 
@@ -55,7 +57,7 @@ private:
 
     MyDB_TablePtr _table;
 
-    MyDB_BufferManagerPtr _bufferManager;
+    MyDB_BufferManagerPtr _bufferMgr;
 
     PageMap _pageMap;
 
