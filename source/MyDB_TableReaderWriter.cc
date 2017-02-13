@@ -22,10 +22,11 @@ MyDB_TableReaderWriter :: MyDB_TableReaderWriter (MyDB_TablePtr table, MyDB_Buff
 }
 
 MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
-	PageMap :: iterator it = _pageMap.find(id);
+  PageMap :: iterator it = _pageMap.find(id);
 	//pagePtr exist
 	if (it != _pageMap.end()) {
 		MyDB_PageReaderWriterPtr ptr = it->second;
+    cout << "HASpage: " << id << endl;
 		return *ptr;
 	}
 	//pagePtr doesn't exist
@@ -33,9 +34,14 @@ MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
     MyDB_PageHandle pageHandle = _bufferMgr->getPage(_table, (long) id);
     size_t pageSize = _bufferMgr->getPageSize();
 		MyDB_PageReaderWriterPtr ptr = make_shared<MyDB_PageReaderWriter>(pageHandle, pageSize);
+    //ptr->setId(id);
 		_pageMap[id] = ptr;
+    if (id < 8) {
+      cout << "HASN'Tpage: " << id << endl;
+    }
 		return *ptr;
 	}
+
 }
 
 MyDB_RecordPtr MyDB_TableReaderWriter :: getEmptyRecord () {
@@ -50,6 +56,7 @@ MyDB_PageReaderWriter &MyDB_TableReaderWriter :: last () {
 void MyDB_TableReaderWriter :: append (MyDB_RecordPtr record) {
     while (!last().append(record)) {
         int last = _table -> lastPage() + 1;
+        //cout << "last: " << last << endl;
         _table->setLastPage(last);
     }
 }

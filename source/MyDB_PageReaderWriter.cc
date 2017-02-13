@@ -8,6 +8,7 @@
 class MyDB_RecordIterator;
 class MyDB_PageIterator;
 
+
 void MyDB_PageReaderWriter :: clear () {
     GET_OFFSET_UNTIL_END(_pageHandle -> getBytes()) = HEADER_SIZE;
 }
@@ -29,13 +30,18 @@ bool MyDB_PageReaderWriter :: append (MyDB_RecordPtr record) {
     char *head = (char*)_pageHandle -> getBytes();
     size_t recordSize = record -> getBinarySize();
     size_t offset = GET_OFFSET_UNTIL_END(head);
+    //if (myid < 8) {
+      //cout << "[" << myid << "]: " << offset << " :: " << _pageSize << endl;
+    //}
     if (recordSize + offset <= _pageSize) {
+
         char *writeTo = offset + head;
         char *end = (char*)record -> toBinary(writeTo);
         GET_OFFSET_UNTIL_END(head) = end - head;
+        cout << "Append Succeed!!!" << endl;
         return true;
     } else {
-        cout << "Fail to append record: pageSize exceeds." << endl;
+        //cout << "Fail to append record: pageSize exceeds." << endl;
         return false;
     }
 }
