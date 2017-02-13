@@ -77,6 +77,10 @@ void MyDB_TableReaderWriter :: loadFromTextFile (string fNameIn) {
         cout << "Error: file " << fNameIn << " doesn't exist." << endl;
     }
     myFile.close();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 }
 
 MyDB_RecordIteratorPtr MyDB_TableReaderWriter :: getIterator (MyDB_RecordPtr record) {
