@@ -12,7 +12,7 @@ using namespace std;
 
 
 MyDB_TableReaderWriter :: MyDB_TableReaderWriter (MyDB_TablePtr table, MyDB_BufferManagerPtr bufferMgr) {
-    cout<< "[MyDB_TableReaderWriter :: MyDB_TableReaderWriter] "<< "Constructor." << endl;
+    //cout<< "[MyDB_TableReaderWriter :: MyDB_TableReaderWriter] "<< "Constructor." << endl;
 	_table = table;
 	_bufferMgr = bufferMgr;
     _emptyRecord = make_shared <MyDB_Record> (table->getSchema());
@@ -27,7 +27,7 @@ MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
 	//pagePtr exist
 	if (it != _pageMap.end()) {
 		MyDB_PageReaderWriterPtr ptr = it->second;
-    cout << "HASpage: " << id << endl;
+    //cout << "HASpage: " << id << endl;
 		return *ptr;
 	}
 	//pagePtr doesn't exist
@@ -38,7 +38,7 @@ MyDB_PageReaderWriter &MyDB_TableReaderWriter :: operator [] (size_t id) {
     //ptr->setId(id);
 		_pageMap[id] = ptr;
     if (id < 8) {
-      cout << "HASN'Tpage: " << id << endl;
+      //cout << "HASN'Tpage: " << id << endl;
     }
 		return *ptr;
 	}
@@ -51,7 +51,7 @@ MyDB_RecordPtr MyDB_TableReaderWriter :: getEmptyRecord () {
 
 MyDB_PageReaderWriter &MyDB_TableReaderWriter :: last () {
     int lastPage = _table->lastPage();
-    cout<< " MyDB_TableReaderWriter :: last " << "get last page " << lastPage << endl;
+    //cout<< " MyDB_TableReaderWriter :: last " << "get last page " << lastPage << endl;
     return (*this)[lastPage];
 }
 
@@ -65,7 +65,7 @@ void MyDB_TableReaderWriter :: append (MyDB_RecordPtr record) {
 }
 
 void MyDB_TableReaderWriter :: loadFromTextFile (string fNameIn) {
-    cout<< "[MyDB_TableReaderWriter :: loadFromTextFile]" << " load from file " << fNameIn << endl;
+    //cout<< "[MyDB_TableReaderWriter :: loadFromTextFile]" << " load from file " << fNameIn << endl;
     int last = getLastPage();
     for (int i = 0; i <= last; i++) {
         (*this)[i].clear();
@@ -75,7 +75,7 @@ void MyDB_TableReaderWriter :: loadFromTextFile (string fNameIn) {
     ifstream myFile;
     myFile.open(fNameIn);
     if (myFile.is_open()) {
-        cout << " Open file " << fNameIn <<endl;
+        //cout << " Open file " << fNameIn <<endl;
         while (getline(myFile, line)) {
             _emptyRecord -> fromString(line);
             append(_emptyRecord);

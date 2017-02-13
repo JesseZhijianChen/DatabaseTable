@@ -8,17 +8,16 @@ void MyDB_TableIterator :: getNext() {
     if (_currentPageIterator->hasNext()) {
         _currentPageIterator->getNext();
     } else {
-        if (_current_page < _tableReaderWriter -> getLastPage()) {
+        while (_current_page < _tableReaderWriter -> getLastPage()) {
             _currentPageIterator = (*_tableReaderWriter)[++_current_page].getIterator(_record);
+            _currentPageIterator->getNext();
         }
-        else {
-            cout << "Error: reach the end of the table." << endl;
-        }
+        cout << "Error: reach the end of the table." << endl;
     }
 }
 
 bool MyDB_TableIterator :: hasNext() {
-    
+
     if (_current_page < _tableReaderWriter ->getLastPage() ) {
         return true;
     } else {
