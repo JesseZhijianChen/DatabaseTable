@@ -19,7 +19,7 @@ public:
 
 	// empties out the contents of this page, so that it has no records in it
 	// the type of the page is set to MyDB_PageType :: RegularPage
-	void clear ();	
+	void clear ();
 
 	// return an itrator over this page... each time returnVal->next () is
 	// called, the resulting record will be placed into the record pointed to
@@ -37,19 +37,21 @@ public:
 	// sets the type of the page
 	void setType (MyDB_PageType toMe);
 
+
     MyDB_PageReaderWriter(MyDB_PageHandle, size_t);
-    
+
     ~MyDB_PageReaderWriter();
-	
+
+
+
 private:
 
     //MyDB_PageType _pageType;
     //MyDB_BufferManagerPtr bufferMgr;
-    
+
     MyDB_PageHandle _pageHandle;
-    
     size_t _pageSize;
-    
+
 };
 
 #endif
