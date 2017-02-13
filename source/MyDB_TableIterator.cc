@@ -2,13 +2,14 @@
 #define TABLE_ITERATER_CC
 
 #include "MyDB_TableIterator.h"
+#include "MyDB_PageReaderWriter.h"
 
 void MyDB_TableIterator :: getNext() {
     if (_currentPageIterator->hasNext()) {
         _currentPageIterator->getNext();
     } else {
         if (_current_page < _tableReaderWriter -> getLastPage()) {
-            _currentPageIterator = (_tableReaderWriter)[++_current_page].getIterator(_record);
+            _currentPageIterator = (*_tableReaderWriter)[++_current_page].getIterator(_record);
         }
         else {
             cout << "Error: reach the end of the table." << endl;
@@ -29,13 +30,10 @@ MyDB_TableIterator :: MyDB_TableIterator(MyDB_TableReaderWriter* tableReaderWrit
     _tableReaderWriter = tableReaderWriter;
     _record = record;
     _current_page = 0;
-    
-    _currentPageIterator = ((*_tableReaderWriter)[0])
-    //.getIterator(record);
+    _currentPageIterator = ((*tableReaderWriter)[0]).getIterator(record);
 }
 
 MyDB_TableIterator :: ~MyDB_TableIterator() {
-    
 
 }
 

@@ -13,6 +13,7 @@
 #include "MyDB_TableReaderWriter.h"
 #include "MyDB_Record.h"
 
+
 class MyDB_TableIterator : public MyDB_RecordIterator {
 public:
     // put the contents of the next record in the file/page into the iterator record
